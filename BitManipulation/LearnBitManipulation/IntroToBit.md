@@ -75,3 +75,8 @@
 # return count
 # Here we keep on removing the rightmost or the smallest bit one by one till n is not zero.
 # This gives us count of all set bits
+
+# 7. Set the rightmost bit to 1.
+#    return (n | n+1)
+#    n + 1 flips the rightmost 0 in n to 1, 
+#    Performing OR sets that bit to 1 while leaving other bits unchanged.
