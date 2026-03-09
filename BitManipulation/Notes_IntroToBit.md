@@ -80,3 +80,31 @@
 #    return (n | n+1)
 #    n + 1 flips the rightmost 0 in n to 1, 
 #    Performing OR sets that bit to 1 while leaving other bits unchanged.
+
+# 8. Check ODD or EVEN
+# if (n & 1 == 0): "Even" 
+# else: "Odd"
+
+# 8. detect if the number is a Power of two (n=2^x) => 2^4 -> 16 -> 10000; 2^5 - 32 -> 100000 
+# if (n & n-1 == 0) return "Yes" else "No" 
+
+# 9. UNSET rightmost bit:-
+# n = n & (n - 1)
+
+# 10. SET rightmost bit:-
+# n = n | (n + 1)
+
+# 11. Count number of SET-bits
+# count = 0
+# while n>0:
+#    n = n & (n - 1)  # Turn off the rightmost set bit
+#    count += 1
+# return count
+
+# 12. Count number of SET-bits (alternate approach)
+# count = 0
+# for i in range(32):
+#     count += (num & 1)
+#     num = num >> 1 # Shift the number every time by 1 place    
+# return count
+
