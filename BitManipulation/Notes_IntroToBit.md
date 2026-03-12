@@ -40,11 +40,11 @@
 # 5: 0000 0101
 # ~5: 1111 1010 → -6 (in two's complement)
 
-# Right Shift (>>): Shifts bits to the right, fills left with 0s.
-# 13 >> 1 = 0110 → 6
+# Right Shift (>>): Shifts bits to the right by 1 position, fills left with 0s.
+# 13(1101) >> 1 => 1101 >> 1 => 0110 → 6
 
-# Left Shift (<<): Shifts bits to the left, fills right with 0s.
-# 13 << 1 = 11010 → 26
+# Left Shift (<<): Shifts bits to the left by 1 position, fills right with 0s.
+# 13(1101) << 1 => 1101 << 1 => 11010 → 26
 
 # Tricks:-
 # 1. Swapping Two Numbers Without a Third Variable
