@@ -78,7 +78,7 @@
 
 # 7. Set the rightmost bit to 1.
 #    return (n | n+1)
-#    n + 1 flips the rightmost 0 in n to 1, 
+ 
 #    Performing OR sets that bit to 1 while leaving other bits unchanged.
 
 # 8. Check ODD or EVEN
@@ -92,7 +92,7 @@
 # n = n & (n - 1)
 
 # 10. SET rightmost bit:-
-# n = n | (n + 1)
+# n = n | (n + 1)  # (n + 1) flips the rightmost 0 in (n) to 1,
 
 # 11. Count number of SET-bits
 # count = 0
@@ -108,3 +108,23 @@
 #     num = num >> 1 # Shift the number every time by 1 place    
 # return count
 
+13. min bits required to flip to reach target from start.
+-> count bits that are different. (do xor)
+-> count set bits 
+
+14. single number 1:- xor all elements to get unique
+
+15. Subsets 1:- get all combinations (2^n). 
+iterate through all values from 0->2**n. 
+    for each item iterate throgh its length
+        if that bit of the number is set(1) -> (1<<i & num)
+            add nums[i] to curr
+add curr to result before each new number
+
+16.XOR of all numbers in range L and R:-
+    this one is ratta.
+    basically return xor from (1 to R) and (1 to L-1) 
+    to calculate xor from 1 to any number there is a pattern which we have to ratta. 
+    -> (N%4==1: return 1, N%4==2: return N+1, N%4==3: return 0, N%4==0: return N)
+
+17. single number 3:-
