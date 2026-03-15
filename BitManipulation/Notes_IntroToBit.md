@@ -78,15 +78,15 @@
 
 # 7. Set the rightmost bit to 1.
 #    return (n | n+1)
- 
-#    Performing OR sets that bit to 1 while leaving other bits unchanged.
+# Performing OR sets that bit to 1 while leaving other bits unchanged.
+
 
 # 8. Check ODD or EVEN
 # if (n & 1 == 0): "Even" 
 # else: "Odd"
 
 # 8. detect if the number is a Power of two (n=2^x) => 2^4 -> 16 -> 10000; 2^5 - 32 -> 100000 
-# if (n & n-1 == 0) return "Yes" else "No" 
+# if (n & n-1 == 0) return "Yes" else "No" . So we basically unset the rightmost bit and check if the number is 0 or not. if it is 0 meaning then number is a power of 2 (2^3 - 8 -> 1000; 2^4 - 16 -> 10000; 2^5 - 32 -> 100000)
 
 # 9. UNSET rightmost bit:-
 # n = n & (n - 1)
