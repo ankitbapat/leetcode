@@ -1,15 +1,15 @@
 class Solution:
-    def fun(self, nums, index, sum, curr, res):
+    def fun(self, nums, index, sum, res):
         if len(nums)==index:
             res.append(sum)
             return
-        self.fun(nums, index+1, sum+nums[index], curr, res)
-        self.fun(nums, index+1, sum, curr, res)
+        self.fun(nums, index+1, sum+nums[index], res)
+        self.fun(nums, index+1, sum, res)
 
 s=Solution()
 nums = [5,2,1]
 res=[]
-s.fun(nums, 0, 0, [], res)
+s.fun(nums, 0, 0, res)
 res.sort()
 print(res)
 
