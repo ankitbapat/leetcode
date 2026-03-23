@@ -127,4 +127,9 @@ add curr to result before each new number
     to calculate xor from 1 to any number there is a pattern which we have to ratta. 
     -> (N%4==1: return 1, N%4==2: return N+1, N%4==3: return 0, N%4==0: return N)
 
-17. single number 3:-
+17. single number 3:- see code. use 2 buckets and based on rightmost set bit we divided all numbers into those 2 buckets and then do XOR within those two buckets separately
+
+18. Subsets:-
+gnerate combinations of the bits and pick only that item from the array who's corresponding bit is set
+
+19. XORFromLtoR:- by-heart it is a trick

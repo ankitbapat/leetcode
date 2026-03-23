@@ -1,35 +1,28 @@
+#see striver solution article
 class Solution():    
-    def fun(self, s, curr, ep, last_op, expresion, sum):
-        print(expresion)
-        if s==len(num):
-            if curr==target:
-                res.append(expresion)
+    def fun(self, start, curr_val, last_operand, expression):
+
+        if start==len(num):
+            if curr_val==target:
+                res.append(expression)
             return
 
-        for i in range(s, len(num)):
-            if i>s and num[i]=="0": return
-            n = int(num[s:i+1])
-            if s==0:
-                self.fun(i+1, curr, n)
+        for i in range(start, len(num)):
+            if i>start and num[i]=="0": return
+            curr_num = num[start:i+1] #current number
+            curr_num_val = int(num[start:i+1]) #current number value
+            if start==0:
+                self.fun(i+1, curr_num_val, curr_num_val, curr_num)
             else:
-                self.fun(i+1, curr + n, n)
-                self.fun(i+1, curr - n, -n)
-                self.fun(i+1, curr * n, )
-            # if op=='+': sum = sum + int(num[s])
-            # if op=='-': sum = sum - int(num[s])
-            # if op=="*": sum = sum * int(num[s])
-            curr.append(num[s]+op)
-            self.fun(s+1, curr, sum)
-            curr.pop()
-            # if op=="+": sum = sum - int(num[s])
-            # if op=="-": sum = sum + int(num[s])
-            # if op=="*": sum = sum / int(num[s])
-
+                self.fun(i+1, curr_val + curr_num_val, curr_num_val, expression + "+" + curr_num)
+                self.fun(i+1, curr_val - curr_num_val, -curr_num_val, expression + "-" + curr_num)
+                self.fun(i+1, curr_val - last_operand + last_operand * curr_num_val, last_operand * curr_num_val, expression + "*" + curr_num)
+            
 
 sol=Solution()
 target=6
 num="123"
 operants=['+', '-', '*']
 res=[]
-sol.fun(0,[],0)
+sol.fun(0, 0, 0, "")
 print(res)
