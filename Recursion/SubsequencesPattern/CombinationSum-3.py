@@ -6,7 +6,6 @@ class Solution:
         
         for i in range(index, 10):
             if sum+nums[i]>target: break
-            if i>index and nums[i]==nums[i-1]:continue
             curr.append(nums[i])
             self.fun(nums, target, k, curr, sum+nums[i], i+1, res)
             curr.pop()
@@ -14,7 +13,7 @@ class Solution:
 s=Solution()
 nums = [1,2,3,4,5,6,7,8,9]
 k = 3
-n = 9
+n = 7
 res=[]
 s.fun(nums, n, k, [], 0, 0, res)
 print(res)

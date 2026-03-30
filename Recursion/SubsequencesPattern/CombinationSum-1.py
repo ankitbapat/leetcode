@@ -4,7 +4,6 @@ class Solution:
         if index==len(nums):
             if target==0:
                 res.append(curr.copy())
-                return
             return
 
         if target>=nums[index]:
