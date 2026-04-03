@@ -1,12 +1,10 @@
 
-## PICK / NO-PICK
-### How to think recursively?- Whenever the problem is related to picking up elements from an array to form a combination, start thinking about the “pick and non-pick” approach.
----
+# PICK / NO-PICK
+- How to think recursively - Whenever the problem is related to picking up elements from an array to form a combination, start thinking about the “pick and non-pick” approach.
 
-<br>
-
-# 1. Get all Power-Sets/Subsequence
+## 1. Get all Power-Sets/Subsequence
 #### Code File: PowerSet.py
+#### Question:- Given a string, find all the possible subsequences of the string.
 #### Input : nums = [1, 2, 3]
 #### Output : [ [ ] , [1] , [2] , [1, 2] , [3] , [1, 3] , [2, 3] , [1, 2 ,3] ]
 #### Explanation:-
@@ -54,10 +52,9 @@
 - Time:- O(2^N) - since we had 2 choices at each step (Pick/No-Pick). Every step == N. so if N is 3 -> 2^3 
 - Space:- O(N) - Depth of the recursion tree
 
-<br>
-
-# 2. Generate all Binary Strings
+## 2. Generate all Binary Strings
 #### Code File: GenerateAllBinaryStrings.py
+#### Question:- Given an integer n, return all binary strings of length n. Return the result in lexicographically increasing order.
 #### Input:- N=3 
 #### Output:- ["000", "001", "010", "011", "100", "101", "110", "111"]
 #### Explanation:-
@@ -82,10 +79,9 @@
 - Time:- 2^N - since we had 2 choices at each step (1/0). Every step == N. so if N is 3 -> 2^3 
 - Space:- O(N) - Depth of the recursion tree
 
-<br>
-
-# 2.a. Generate all Binary Strings Without Consecutive 1s
+## 2.a. Generate all Binary Strings Without Consecutive 1s
 #### Code File: GenerateAllBinaryStrings.py
+#### Question:- Given an integer n, return all binary strings of length n that do not contain consecutive 1s. Return the res in lexicographically increasing order.
 #### Input: n = 3
 #### Output: ["000", "001", "010", "100", "101"]
 #### Explanation:-
@@ -107,10 +103,9 @@
 - Time:- 2^N - since we had 2 choices at each step (1/0). Every step == N. so if N is 3 -> 2^3 
 - Space:- O(N) - Depth of the recursion tree
 
-<br>
-
-# 3. Get all Power-Sets/Subsequence with SUM=K
-#### Code File:- CountAllSubsequencesWithSumK.py 
+## 3. Get all Power-Sets/Subsequence with SUM=K
+#### Code File:- CountAllSubsequencesWithSumK.py
+#### Question:- Get all Subsets/subsequences with sum=k 
 #### Input:- nums = [4, 9, 2, 5, 1], k = 10
 #### Output:- [[4, 5, 1], [9, 1]]
 #### Explanation:-
@@ -134,10 +129,9 @@
 - Time:- 2^N - since we had 2 choices at each step (Pick/No-Pick).
 - Space:- O(N) - Depth of the recursion tree
 
-<br>
-
-# 4. Count all Power-Sets/Subsequence with SUM=K (l/r)
+## 4. Count all Power-Sets/Subsequence with SUM=K (l/r)
 #### Code File:- CountAllSubsequencesWithSumK.py
+#### Question:- count all Subsets/subsequences with sum=k 
 #### Input:- nums = [4, 9, 2, 5, 1], k = 10
 #### Output:- 2
 #### Explanation:- 
@@ -162,10 +156,9 @@
 - Time:- 2^N - since we had 2 choices at each step (Pick/No-Pick).
 - Space:- O(N) - Depth of the recursion tree
 
-<br>
-
-# 5. Check if there EXISTS a Subsequence with SUM=K (True/False)
+## 5. Check if there EXISTS a Subsequence with SUM=K (True/False)
 #### Code File:- CheckIfThereExistsASubsequenceWithSumK.py
+#### Question:- check if there exist a Subsets/subsequences with sum=k 
 #### Input:- nums = [4, 9, 2, 5, 1], k = 10
 #### Output:- True
 #### Explanation:- 
@@ -196,10 +189,9 @@
 - Time:- 2^N - since we had 2 choices at each step (Pick/No-Pick).
 - Space:- O(N) - Depth of the recursion tree
 
-<br>
-
-# 6. Subset Sum - 1
+## 6. Subset Sum - 1
 #### Code File:- SubsetSum-1.py
+#### Question:- return sum of all subsets 
 #### Input: N = 3, arr[] = {5,2,1}
 #### Output: 0,1,2,3,5,6,7,8
 #### Explanation: 
@@ -223,10 +215,9 @@
 - Time:- 2^N - since we had 2 choices at each step (Pick/No-Pick).
 - Space:- O(N) - Depth of the recursion tree
 
-<br>
-
-# 7. CombinationSum - 1
+## 7. CombinationSum - 1
 #### Code File:- CombinationSum-1.py
+#### Question:- return the list of all unique combinations where the chosen numbers sum to target. A number can be choosen infinite times
 #### Input: nums = [2,3,6,7], target = 7
 #### Output: [[2,2,3],[7]]
 #### Explanation:- 
@@ -258,10 +249,9 @@ Assume your nums=[1] and Target is 10. The complexity of pick/not-pick will be 2
 - space:- O(k * X) -> the space complexity is variable and dependents on number of combinations generated (X). k-> size of curr. 
 k (size of curr) * X (number of curr)
 
-<br>
-
-# 8. GenerateParenthesis (Trick)
+## 8. GenerateParenthesis (Trick)
 #### Code File:- GenerateParenthesis.py
+#### Question:- Given n pairs of parentheses, generate all combinations of well-formed parentheses.
 #### Input: n = 3
 #### Output: ["((()))", "(()())", "(())()", "()(())", "()()()"]
 #### Explanation:-
@@ -291,18 +281,13 @@ k (size of curr) * X (number of curr)
 
 <br>
 
----
----
----
-## PICK or NOT using For-loop
-### In this the decision tree has N choises at each level. In the PICK/NO-PICK category the tree has 2 choices at each level (PICK the element or Not-PICK the element). 
-### Here, we have N choices at each level - meaning - at each level of the decision tree we go over N elements and decide if we Pick one element or move to the next element. If we PICK ( lets say the 1st element ) we then go further down (one more level) the decision tree, and, decide weather to choose the next elements or not (given that we already choose the 1st element). At this level we loop from 2nd element till last and decide to Pick the elements or not. If yes, then we picked 1st & 2nd elements, not we go further down and check if we could pick from 3rd elem till last... and so on! 
----
+# PICK or NOT using For-loop
+- In this the decision tree has N choises at each level. In the PICK/NO-PICK category the tree has 2 choices at each level (PICK the element or Not-PICK the element). 
+- Here, we have N choices at each level - meaning - at each level of the decision tree we go over N elements and decide if we Pick one element or move to the next element. If we PICK ( lets say the 1st element ) we then go further down (one more level) the decision tree, and, decide weather to choose the next elements or not (given that we already choose the 1st element). At this level we loop from 2nd element till last and decide to Pick the elements or not. If yes, then we picked 1st & 2nd elements, not we go further down and check if we could pick from 3rd elem till last... and so on! 
 
-<br>
-
-# 9. CombinationSum - 2 
+## 9. CombinationSum - 2 
 #### Code File:- CombinationSum-2.py
+#### Question:- return the list of all unique combinations where the chosen numbers sum to target. A number can be choosen once in the combo
 #### Input: nums = [10,1,2,7,6,1,5], target = 8
 #### Output: [[1,1,6], [1,2,5], [1,7],  [2,6]]
 #### Explanation:-
@@ -319,7 +304,6 @@ k (size of curr) * X (number of curr)
 > We do the break thing, because if the current elem is larger than target, we need not check its next elements as they all will be larger than target. This happens because nums is sorted.
 
 > We do add the element to curr and pop it back while returning for Backtraking. If target=0, add curr to res. 
-
 #### Code:-
     def fun(self, nums, target, index, curr, res):
         if target==0:
@@ -339,10 +323,9 @@ k (size of curr) * X (number of curr)
 - Time:- 2^n * K - 2^n subsequences, storing takes O(k) time where k is the average length of each combination.
 - Space:- O(k * X) -> number of combinations generated (X) * k-> size of curr. 
 
-<br>
-
-# 10. CombinationSum - 3 
+## 10. CombinationSum - 3 
 #### Code File:- CombinationSum-3.py
+#### Question:- get all possible set of k numbers that can be added together to equal n.  k = 1-9. only one number can be choosen from 1-9
 #### Input:  k = 3, n = 7
 #### Output: [[1, 2, 4]]
 #### Explanation:-
@@ -353,7 +336,6 @@ k (size of curr) * X (number of curr)
 > we check if the sum==target and len(curr)==k - we add curr to res
 
 > inside the forloop if sum+nums[i]>target - we break. no need to check for further elements because they are anyways all greater
-
 #### Code:-
     def fun(self, nums, target, k, curr, sum, index, res):
         if sum==target and len(curr)==k:
@@ -371,10 +353,9 @@ k (size of curr) * X (number of curr)
 - Time:- O(2^9 * k):- 2^9 comniations at each step. Plus k to copy the curr of length k into result
 - Space:-  O(k) - The maximum depth of the recursion tree is k, as we are only looking for a combination of k numbers. 
 
-<br>
-
-# 11. SubsetSum - 2 
+## 11. SubsetSum - 2 
 #### Code File:- SubsetSum-2.py
+#### Question:- Given nums, it can have duplicate, provide the power set. Duplicate subsets cannot exist in the solution set. Return the answer in any order.
 #### Input:  nums=[1,2,2]
 #### Output: [ [ ],[1],[1,2],[1,2,2],[2],[2,2] ]
 #### Explanation:-
@@ -387,7 +368,6 @@ k (size of curr) * X (number of curr)
 > we choose 1st then down the tree we choose 2 till last. then down the tree we choose 3 till last, and so on..
 
 > no base case needed as we need all the posssible subsets
-
 #### Code:-
     def fun(self, nums, index, curr, res):
         res.append(curr.copy())
@@ -403,10 +383,9 @@ k (size of curr) * X (number of curr)
 - Time:- O(2^n) - for no. of combinations
 - Space:-  O(2^n) - for no. of combinatinations to be stored + O(n) stack space 
 
-<br>
-
-# 12. Combinations
+## 12. Combinations
 #### Code File:- Combinations.py
+#### Question:- Given two integers n and k, return all possible combinations of k numbers chosen from the range [1, n].
 #### Input:  n = 4, k = 2
 #### Output: [[1,2],[1,3],[1,4],[2,3],[2,4],[3,4]]
 #### Explanation:-
@@ -417,7 +396,6 @@ k (size of curr) * X (number of curr)
 > we choose 1st then down the tree we choose 2 till last. then down the tree we choose 3 till last, and so on..
 
 > if len(curr)==k we hit the base case. add curr to res
-
 #### Code:-
     def fun(self, curr, start):
         if len(curr)==k:
@@ -431,10 +409,9 @@ k (size of curr) * X (number of curr)
 - Time:- O(2**n) * O(k) - same as combination sum 2
 - Space:-  O(k * x) - same as combination sum 2 
 
-<br>
-
-# 13. LetterCombinationOfAPhoneNumber (Trick)
+## 13. LetterCombinationOfAPhoneNumber (Trick)
 #### Code File:- LetterCombinationOfAPhoneNumber.py
+#### Question:- Given a string consisting of digits from 2 to 9 (inclusive). Return all possible letter combinations that the number can represent.
 #### Input: digits = "23"
 #### Output: ["ad","ae","af","bd","be","bf","cd","ce","cf"]
 #### Explanation:-
@@ -442,9 +419,7 @@ k (size of curr) * X (number of curr)
 
 > similar to combination sum 2. We build a map first to have all the digits and there corresponding strings.
 
-> we iterate through each char of 1st digit in the for-loop. So we pick 1st char of 1st digit. then do recursion on 1st char of 2nd digit. base case add - 1st char of 1st digit and 1st char of 2nd digit. Now return - pop the 1st char of 2nd digit - add 2nd char of 2nd digit - recursion - base case - return - pop 2nd char of 2nd digit - add 3rd char of 2nd digit ... base case - loop end - now try 2nd char of 1st digit and then in for-loop try all chars one-by-one of 2nd digit. now the same with 3rd char of 1st digit..finally we get all the combos.  
-
-
+> we iterate through each char of 1st digit in the for-loop. So we pick 1st char of 1st digit. then do recursion on 1st char of 2nd digit. base case add - 1st char of 1st digit and 1st char of 2nd digit. Now return - pop the 1st char of 2nd digit - add 2nd char of 2nd digit - recursion - base case - return - pop 2nd char of 2nd digit - add 3rd char of 2nd digit ... base case - loop end - now try 2nd char of 1st digit and then in for-loop try all chars one-by-one of 2nd digit. now the same with 3rd char of 1st digit..finally we get all the combos.
 #### Code:-
     def fun(self, d_index, curr, res, digits, map_digits):
         if d_index==len(digits):
@@ -472,13 +447,9 @@ k (size of curr) * X (number of curr)
 - Time:- O(N^D) * N - number of digits (D). length of string(abc,def,etc..) (N). multiplied by N coz concatenating each string takes N time. For example:- 3 places 2 choises to make at each place. complexity is "2^3". total 8 choices
 - Space:-  O(D) - stack space depth (number of digits (D)). Space complexity could also be O(N^D)*O(N) because N^D * N are the total combinations that gets generated. But we take stack-space into consideration instead of space required to store the result
 
-<br>
-
----
-## Hard Problems
-
-# 13. M-coloringProblem
+## 14. M-coloringProblem (Hard Problem)
 #### Code File:- M-ColoringProblem.py
+#### Question:- Given an undirected graph and a number m, check if the graph can be colored with at most m colors such that no two adjacent vertices are of same color.
 #### Input: Edges[] = {  (0, 1),  (1, 2),  (2, 3),  (3, 0),  (0, 2)  } M = 3 
 #### Output: 1. - It is possible to color the given graph using 3 colors, so the answer is 1 (possible).
 #### Explanation:-
@@ -519,10 +490,9 @@ k (size of curr) * X (number of curr)
 - Time:- O(C^N) - C number of colors. N number of nodes
 - Space:- O(N) - depth of rec stack -> length of nodes
 
-<br>
-
-# 14. PalindromePartitioning
+## 15. PalindromePartitioning (Hard Problem)
 #### Code File:- PalindromePartitioning.py
+#### Question:- Given a string s partition it such that every substring of partition is palindrome. Return all possible palindrome partition of string s.
 #### Input: s = "aabaa"
 #### Output: [ [ "a", "a", "b", "a", "a"] , [ "a", "a", "b", "aa"] , [ "a", "aba", "a"] , [ "aa", "b", "a", "a"] , [ "aa", "b", "aa" ] , [ "aabaa" ] ]
 #### Explanation:-
@@ -550,9 +520,7 @@ k (size of curr) * X (number of curr)
 - Time:- O(2^len(s) * s) -> 2^len(s) at each step we decide weather to pick or not pick a character. Also for calculating palindrome we need O(len(s))
 - Space:- O(len(s)) -> stack depth
 
-<br>
-
-# 15. WordBreak
+## 16. WordBreak (Hard Problem)
 #### Code File:- WordBreak.py
 #### Question:- Given a string s and a dictionary of strings wordDict, return true if s can be segmented into a space-separated sequence of one or more dictionary words.
 #### Input: s = "catsandog", wordDict = ["cats","dog","sand","and","cat"] OR s = "aaaaaaa", wordDict = ["aaa", "aaaa"]
@@ -577,9 +545,7 @@ k (size of curr) * X (number of curr)
 - Time:- O(L x W^S) -> W are the words and S is the length of string. At each character we can make W choices. so O(W^S). Now length of longest word in dict is L. So to check a word of length L at each step (position),
 - Space:- O(S) -> stack depth
 
-<br>
-
-# 16. N-Queen
+## 17. N-Queen (Hard Problem)
 #### Code File:- NQueen.py
 #### Question:- placing n queens on n × n chessboard such that no two queens can attack each other.
 #### Input: N = 4
@@ -632,95 +598,8 @@ k (size of curr) * X (number of curr)
 - Time:- O(N! x N) = 1st queen has N places to fit. second queen has N-1 places to fit. 3rd has N-2 places,..last queen has 1 place to fit. So the total time complexity is N x (N-1) x (N-2) x ...2 x 1 => N!. Now, each check takes total of O(N) time. So in total:- O(N! x N)
 - Space:- O(N x N) + O(N) = result matrix is an array with an array so - N x N. Plus stack space - O(N)
 
-<br>
 
----
-## 4 Direction DFS
----
-
-# 17. Word Search
-#### Code File:- WordSearch.py
-#### Question:- Given an m x n grid, return true if the word exists in the grid. You can search horizontal and verticle
-#### Input:- word = "ABCCED", matrix = [["A", "B", "C", "E"], ["S", "F", "C", "S"], ["A", "D", "E", "E"]]
-#### Output:- True 
-#### Explanation:-
->  Note there is a optimal approach available which do not use set. It stores the matrix element in temp, and marks it with a char('#'). While returning(backtracking), the temp is then written back on that matrix element. this avoids the use of set (to keep track of visited elements). Look at the codeFile for the solution
-
-> In this code, we traverse through each element of the matrix, and do DFS in 4 directions for each cell.
-
-> as we call DFS for that element, we add that element in set, and do dfs on 4 different directions -> UP,DOWN,RIGHT,LEFT for the next element in word(index+1). We remove from the set when we do backtracking. This is the same pattern that we follow in subsets/combinationSum-2 -> curr.add(), recursion, curr.pop() -> basically this is how we do recursion in almost all problems
-
-> base case if if the index==len(word - basically we reach the last element) -> return True
-
->we also check if r and c are within bounds and the element is not already visited and the element matches the element in the matrix. If not then return False
-
-> A logical OR of DFS for all 4 directions - gives us res - which we return at the end of recursion
-#### Code:-
-    def fun(self, matrix, word):
-
-        def dfs(r ,c, index):
-            if index==len(word): return True
-            
-            if r not in range(0,ROWS) or c not in range(0,COLS) or ((r,c) in st) or matrix[r][c]!=word[index]: 
-                return False
-            
-            st.add((r,c))
-            res = dfs(r,c+1,index+1) or dfs(r+1,c,index+1) or dfs(r-1,c,index+1) or dfs(r,c-1,index+1)
-            st.remove((r, c))
-
-            return res
-        
-        ROWS=len(matrix)
-        COLS=len(matrix[0])
-        st=set()
-        for r in range(ROWS):
-            for c in range(COLS):
-                if dfs(r,c,0): return True
-        return False
-#### Complexity:-
-- Time:- O(n^2)*O(4^len(word)) - using 2 for loops + 4 choises at each element during recursion.
-- Space:- O(len(word)) + O(set) - recurion depth + used space for SET
-
-<br>
-
-# 18. Rate In A Maze
-#### Code File:- RateInAMaze.py
-#### Question:- A rat is placed at coordinates (0, 0) and wants to reach at coordinates (n-1, n-1). Find all possible paths that rat can take to travel from (0, 0) to (n-1, n-1). The directions in which rat can move are 'U' (up) , 'D' (down) , 'L' (left) , 'R' (right).
-#### Input:- n = 4 , grid = [ [1, 0, 0, 0] , [1, 1, 0, 1], [1, 1, 0, 0], [0, 1, 1, 1] ]
-#### Output:- ["DDRDRR" , "DRDDRR"] 
-#### Explanation:-
->  Note there is a optimal approach available which do not use set. It stores the matrix element in temp, and marks it with a char('#'). While returning(backtracking), the temp is then written back on that matrix element. this avoids the use of set (to keep track of visited elements). Same as the previoius question
-
-> This is similar to the word search - where, we traverse through each element of the matrix, and do DFS in 4 directions for each cell.
-
-> as we call DFS on that grid element, we add that element in set, and do dfs on 4 different directions -> UP,DOWN,RIGHT,LEFT and update/increment the row or column by 1. We remove from the set when we do backtracking. This is the same pattern that we follow in subsets/combinationSum-2 -> curr.add(), recursion, curr.pop() -> basically this is how we do recursion in almost all problems
-
-> base case if the we reach the end of the grid (r==c==n-1) -> add curr to res and return
-
-> we also check if row and column are within bounds and the element is not already visited and the the grid element is not 0. If not then return
-
-> A logical OR of DFS for all 4 directions - gives us res - which we return at the end of recursion
-#### Code:-
-    def fun(self,r,c,curr):
-        if r==n-1 and c==n-1:
-            res.append(curr)
-            return
-        
-        if r<0 or c<0 or r>=n or c>=n or ((r,c) in st) or grid[r][c] == 0: return
-
-        st.add((r,c))
-        self.fun(r,c+1, curr+"R") or self.fun(r,c-1, curr+"L") or self.fun(r+1,c, curr+"D") or self.fun(r-1,c, curr+"U")
-        st.remove((r,c))
-    
-    if grid[0][0] == 1: 
-        sol.fun(0,0,"")
-#### Complexity:-
-- Time:- O(4^N x M) - N x M are the positions. At reach position the mouse takes 4 directions. 4^N*M
-- Space:- O(N*M) - stack space
-
-<br>
-
-# 19. SudokuSolver (Trick)
+## 18. SudokuSolver (Hard Problem) (Trick)
 #### Code File:- SudokuSolver.py
 #### Question:- create a program to solve sudoku - For every row, column and 3*3 grid - the no. from 1-9 should appear only once. empty cell is "."
 #### Input:- board = [["5","3",".",".","7",".",".",".","."],["6",".",".","1","9","5",".",".","."],[".","9","8",".",".",".",".","6","."],["8",".",".",".","6",".",".",".","3"],["4",".",".","8",".","3",".",".","1"],["7",".",".",".","2",".",".",".","6"],[".","6",".",".",".",".","2","8","."],[".",".",".","4","1","9",".",".","5"],[".",".",".",".","8",".",".","7","9"]]
@@ -789,10 +668,91 @@ k (size of curr) * X (number of curr)
 
 <br>
 
----
-## Getting Strong in recursion
----
-# 20. Count Good Numbers (Trick)
+# 4 Direction DFS
+
+## 19. Word Search (Hard Problem)
+#### Code File:- WordSearch.py
+#### Question:- Given an m x n grid, return true if the word exists in the grid. You can search horizontal and verticle
+#### Input:- word = "ABCCED", matrix = [["A", "B", "C", "E"], ["S", "F", "C", "S"], ["A", "D", "E", "E"]]
+#### Output:- True 
+#### Explanation:-
+>  Note there is a optimal approach available which do not use set. It stores the matrix element in temp, and marks it with a char('#'). While returning(backtracking), the temp is then written back on that matrix element. this avoids the use of set (to keep track of visited elements). Look at the codeFile for the solution
+
+> In this code, we traverse through each element of the matrix, and do DFS in 4 directions for each cell.
+
+> as we call DFS for that element, we add that element in set, and do dfs on 4 different directions -> UP,DOWN,RIGHT,LEFT for the next element in word(index+1). We remove from the set when we do backtracking. This is the same pattern that we follow in subsets/combinationSum-2 -> curr.add(), recursion, curr.pop() -> basically this is how we do recursion in almost all problems
+
+> base case if if the index==len(word - basically we reach the last element) -> return True
+
+>we also check if r and c are within bounds and the element is not already visited and the element matches the element in the matrix. If not then return False
+
+> A logical OR of DFS for all 4 directions - gives us res - which we return at the end of recursion
+#### Code:-
+    def fun(self, matrix, word):
+
+        def dfs(r ,c, index):
+            if index==len(word): return True
+            
+            if r not in range(0,ROWS) or c not in range(0,COLS) or ((r,c) in st) or matrix[r][c]!=word[index]: 
+                return False
+            
+            st.add((r,c))
+            res = dfs(r,c+1,index+1) or dfs(r+1,c,index+1) or dfs(r-1,c,index+1) or dfs(r,c-1,index+1)
+            st.remove((r, c))
+
+            return res
+        
+        ROWS=len(matrix)
+        COLS=len(matrix[0])
+        st=set()
+        for r in range(ROWS):
+            for c in range(COLS):
+                if dfs(r,c,0): return True
+        return False
+#### Complexity:-
+- Time:- O(n^2)*O(4^len(word)) - using 2 for loops + 4 choises at each element during recursion.
+- Space:- O(len(word)) + O(set) - recurion depth + used space for SET
+
+## 20. Rate In A Maze (Hard Problem)
+#### Code File:- RateInAMaze.py
+#### Question:- A rat is placed at coordinates (0, 0) and wants to reach at coordinates (n-1, n-1). Find all possible paths that rat can take to travel from (0, 0) to (n-1, n-1). The directions in which rat can move are 'U' (up) , 'D' (down) , 'L' (left) , 'R' (right).
+#### Input:- n = 4 , grid = [ [1, 0, 0, 0] , [1, 1, 0, 1], [1, 1, 0, 0], [0, 1, 1, 1] ]
+#### Output:- ["DDRDRR" , "DRDDRR"] 
+#### Explanation:-
+>  Note there is a optimal approach available which do not use set. It stores the matrix element in temp, and marks it with a char('#'). While returning(backtracking), the temp is then written back on that matrix element. this avoids the use of set (to keep track of visited elements). Same as the previoius question
+
+> This is similar to the word search - where, we traverse through each element of the matrix, and do DFS in 4 directions for each cell.
+
+> as we call DFS on that grid element, we add that element in set, and do dfs on 4 different directions -> UP,DOWN,RIGHT,LEFT and update/increment the row or column by 1. We remove from the set when we do backtracking. This is the same pattern that we follow in subsets/combinationSum-2 -> curr.add(), recursion, curr.pop() -> basically this is how we do recursion in almost all problems
+
+> base case if the we reach the end of the grid (r==c==n-1) -> add curr to res and return
+
+> we also check if row and column are within bounds and the element is not already visited and the the grid element is not 0. If not then return
+
+> A logical OR of DFS for all 4 directions - gives us res - which we return at the end of recursion
+#### Code:-
+    def fun(self,r,c,curr):
+        if r==n-1 and c==n-1:
+            res.append(curr)
+            return
+        
+        if r<0 or c<0 or r>=n or c>=n or ((r,c) in st) or grid[r][c] == 0: return
+
+        st.add((r,c))
+        self.fun(r,c+1, curr+"R") or self.fun(r,c-1, curr+"L") or self.fun(r+1,c, curr+"D") or self.fun(r-1,c, curr+"U")
+        st.remove((r,c))
+    
+    if grid[0][0] == 1: 
+        sol.fun(0,0,"")
+#### Complexity:-
+- Time:- O(4^N x M) - N x M are the positions. At reach position the mouse takes 4 directions. 4^N*M
+- Space:- O(N*M) - stack space
+
+<br>
+
+# Getting Strong in recursion
+
+## 21. Count Good Numbers (Trick)
 #### Code File:- CountGoodNumbers.py
 #### Question:- A digit string is considered good if the digits at even indices are even digits (0, 2, 4, 6, 8) and the digits at odd indices are prime digits (2, 3, 5, 7). return the total number of good digit strings of length n. As the result may be large, return it modulo 109 + 7.
 #### Input: n=2
@@ -814,9 +774,7 @@ k (size of curr) * X (number of curr)
 - Time:- log(n) -  This is because the built-in pow function with three arguments uses fast exponentiation
 - Space:- O(1)
 
-<br>
-
-# 21. Reverse A Stack (Trick)
+## 22. Reverse A Stack (Trick)
 #### Code File:- ReverseAStack.py
 #### Question:- reverse a stack
 #### Input: [4, 1, 3, 2]
@@ -854,9 +812,7 @@ k (size of curr) * X (number of curr)
 - Time:- O(n^2)
 - Space:- O(n)
 
-<br>
-
-# 22. Sort A Stack (Trick)
+## 23. Sort A Stack (Trick)
 #### Code File:- SortStackWithRecursion.py
 #### Question:- sort the stack
 #### Input: [4, 1, 3, 2]
@@ -884,42 +840,61 @@ k (size of curr) * X (number of curr)
 
 <br>
 
+# Summary
+### Pick/no-pick
+- GenerateAllBinaryStrings
+- GenerateAllBinaryStringsWithoutConsecutive 1s
+- Print PowerSet / Subsequence / Subsets-1
+- GetAllSubsequenceWithSumK - (return 1/0)
+- CountAllSubsequenceWithSumK - (return T/F)
+- CheckIfThereExsistsASubsequenceWithSumK
+- CombinationSum-1 - (Can take one item infinite time - pick/no-pick with if condition)
 ---
-#### Questions to Do:-
-##### 1, 4, 5 ,7, 8, 9, 11, 13, 14, 15, 16, 17, 19, 20, 21, 22
+### Pick using For-loop
+- CombinationSum-2 - (Duplicates)
+- CombinationSum-3 - (Combo of combinationSum 1 and 2)
+- SubsetSum-1 - (print sum of all subsets)
+- SubsetSum-2 - (print sum of all subsets with Duplicates)
+- Combinations
+- M-coloringProblem (HARD)
+- PalindromePartitioning (HARD)
+- WordBreak (HARD)
+- N-Queen (HARD)
+- SudokuSolver (HARD)
 ---
-#### Pick/no-pick
-##### GenerateAllBinaryStrings
-##### GenerateAllBinaryStringsWithoutConsecutive 1s
-##### Print PowerSet / Subsequence
-##### GetAllSubsequenceWithSumK - (return 1/0)
-##### CountAllSubsequenceWithSumK - (return T/F)
-##### CheckIfThereExsistsASubsequenceWithSumK
-##### CombinationSum-1 - (Can take one item infinite time - pick/no-pick with if condition)
+### 4 Directions DFS
+- WordSearch (HARD)
+- Rate In A Maze (HARD)
 ---
-#### Pick using For-loop
-##### CombinationSum-2 - (Duplicates)
-##### CombinationSum-3 - (Combo of combinationSum 1 and 2)
-##### SubsetSum-1 - (print sum of all subsets)
-##### SubsetSum-2 - (print sum of all subsets with Duplicates)
-##### Combinations
+### Trick
+- GenerateParanthesis - (pick/no-pick)
+- LetterCombinationOfAPhoneNumber - (Pick using For-loop)
+- countgoodnumber - (recursion)
+- reverseStack - (recursion)
+- sortStack - (recursion)
 ---
-#### Trick:-
-##### GenerateParanthesis - (pick/no-pick)
-##### LetterCombinationOfAPhoneNumber - (combinationSum2)
-##### countgoodnumber - (recursion)
-##### reverseStack - (recursion)
-##### sortStack - (recursion)
+### Extreme HARD
+- Expression-Add-Operator (VERY HARD)
 ---
-#### HARD - combinationSum2
-##### M-coloringProblem
-##### PalindromePartitioning
-##### WordBreak
-##### N-Queen
 ---
-#### HARD - 4 directions DFS
-##### Word search
-##### Rate In A Maze
+### DSA Sheet Questions included
+- LetterCombinationOfAPhoneNumber
+- Combinations
+- CombinationSum-1
+- GenerateParanthesis
+- WordSearch
+- Subsets-1
+- PalindromePartitioning
+- CombinationSum-2
+- Subsets-2
+- N-Queen
+### DSA Sheet Questions NOT included
+- Permutations
+- N-Queen-2 (HARD)
+- Remove Invalid Parentheses (HARD)
+- Wildcard Matching (HARD)
+- Regular Expression Matching (HARD)
+
 
 <!-- # sort on difficulty
 # sort on patttern vs tricks
