@@ -46,14 +46,6 @@
 <br>
 
 # Tricks for BitManipulation
-### Swapping Two Numbers Without a Third Variable
-    def fun(self, A,B):
-        A = A^B
-        B = A^B
-        A = A^B
-        return A,B
-    
-    - Time:- O(1). Space:- O(1)
 ### Check if the i-th Bit is Set
     if num & (1<<i) == 0: return "Not set"
     else: return "Yes it is set"  
@@ -137,6 +129,14 @@
 - Time:- O(1). Space:- O(1)
 - If a number is odd its last bit is always 1. (e.g - 3,5,7,9)
 - So We check if the last bit is 1, then it is odd. if it is 0, then it is even
+### Swapping Two Numbers Without a Third Variable
+    def fun(self, A,B):
+        A = A^B
+        B = A^B
+        A = A^B
+        return A,B
+    
+- Time:- O(1). Space:- O(1)
 
 <br>
 
@@ -419,3 +419,60 @@
 #### Complexity:-
 - time:- O(log(n))
 - space:- O(log(n))
+
+<br>
+
+# Summary
+### Bit manipulation tricks
+- Check if the i-th Bit is Set
+- Set the i-th Bit
+- Clear the i-th Bit
+- Toggle the i-th Bit
+---
+- Set the rightmost Bit
+- Clear the rightmost Bit
+- Detect if the number is Power of TWO.
+- Count number of SET-Bits
+---
+- detect even or odd
+- Swapping of 2 numbers
+### Problems
+- Min bits required to flip to reach target from start
+- Single number 1
+- Single number 3 (Trick - 2 buckets)
+- Subset-1
+- Divide 2 numbers without multiplication of division (Trick - divide the largest number first)
+- XOR Of numbers from L to R. (Trick)
+### Math
+- Print Prime **Factorization**
+- Print Prime **Factors**
+- Print all Divisors
+- Count Primes (Trick - HARD)
+- Pow(x,n) (Trick - even/odd)
+---
+---
+### DSA Sheet Questions included
+- Single number 1
+- Divide Two Integers
+- Count Primes (Math)
+- Pow(x,n) (Math)
+### DSA Sheet Questions NOT included
+- Add Binary
+- Reverse Bits
+- Number of 1 Bits
+- Single Number II
+- Bitwise AND of Numbers Range
+- Counting Bits
+- Palindrome Number (Math)
+- Plus One (Math)
+- Factorial Trailing Zeroes (Math)
+- Sqrt(x) (Math)
+- Max Points on a Line (Math)
+- Fizz Buzz (Math)
+- Power of Three (Math)
+- Excel Sheet Column Number (Math)
+- Fraction to Recurring Decimal (Math)
+- Largest Number (Math)
+- Max Points on a Line (Math)
+- Multiply Strings (Math)
+- Detect Squares (Math)

@@ -1,38 +1,38 @@
-class Stack:
+class StackUsingArray:
     def __init__ (self, size=1000):
         self.arr = [0] * size
         self.capacity = size
         self.topIndex = -1
 
     def push(self, item):
-        if self.topIndex > self.capacity:
+        if self.topIndex == self.capacity - 1:
             print("stack overflow")
             return
         self.topIndex = self.topIndex + 1
         self.arr[self.topIndex] = item
 
     def pop(self):
-        if self.topIndex < 0:
-            print("stack already empty")
-            return
+        if self.isEmpty():
+            print("stack is empty")
+            return -1
         val = self.arr[self.topIndex]
         self.topIndex = self.topIndex - 1
         return val
     
     def top(self):
-        if self.topIndex < 0:
-            print("stack already empty")
+        if self.isEmpty():
+            print("stack is empty")
             return -1
         return self.arr[self.topIndex]
     
     def isEmpty(self):
-        return "True" if len(self.arr) == 0 else "False"
+        return self.topIndex == -1
 
 class Solution:
     def fun(self, instr, values):
         for i in range(len(instr)):
             if instr[i] == "ArrayStack":
-                st = Stack(1000)
+                st = StackUsingArray(1000)
                 print("null", end=" ") 
             elif instr[i] == "push":
                 st.push(values[i][0]) 
@@ -42,7 +42,7 @@ class Solution:
             elif instr[i] == "top":
                 print( st.top(), end=" ")
             elif instr[i] == "isEmpty":
-                print(st.isEmpty()) 
+                print(st.isEmpty(), end=" ") 
                 
 sol=Solution()
 instr = ["ArrayStack", "push", "push", "top", "pop", "isEmpty"]  
