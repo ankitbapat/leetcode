@@ -5,7 +5,7 @@ class StackUsingArray:
         self.topIndex = -1
 
     def push(self, item):
-        if self.topIndex == self.capacity - 1:
+        if self.topIndex >= self.capacity - 1:
             print("stack overflow")
             return
         self.topIndex = self.topIndex + 1

@@ -1,6 +1,5 @@
 class Solution:
     def fun(self, s):
-
         st = []
         for i in range(len(s)):            
             if s[i] == "(" or s[i] == "[" or s[i] == "{": st.append(s[i])

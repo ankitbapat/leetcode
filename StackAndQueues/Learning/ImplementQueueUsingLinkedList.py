@@ -5,32 +5,38 @@ class Node:
 
 class QueueUsingLinkedList:
     def __init__(self):
-        self.head = None
-        self.tail = self.head
+        self.start = self.end = None
+        self.size=0
 
     def push(self, item):
         node = Node(item)
-        if self.head is None:
-            self.head =node
-            self.tail = self.head
+        if self.start is None:
+            self.start = self.end = node
         else:
-            self.head.next = node
-            self.head = node
+            self.end.next = node
+            self.end = node
+        self.size += 1
 
     def pop(self):
-        if self.head is None: return -1
-        val = self.tail.val
-        temp = self.tail
-        self.tail = self.tail.next
+        if self.start is None: 
+            return -1
+        val = self.start.val
+        temp = self.start
+        self.start = self.start.next
+
+        # FIX: when we pop the last item. start=None. So, we have point end to None too!
+        if self.start is None: self.end = None
+
         del temp
+        self.size -= 1
         return val
     
     def peek(self):
-        if self.head is None: return -1
-        return self.tail.val
+        if self.start is None: return -1
+        return self.start.val
     
     def isEmpty(self):
-        return self.tail == self.head == None
+        return self.size == 0
     
 class Solution:
     def fun(self, instr, values):
