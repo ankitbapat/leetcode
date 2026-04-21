@@ -592,6 +592,7 @@
 
 # Monolithic Stack and Queue
 ## Next Greater Element in an array - 1
+#### Code File: NextGreaterElement_1.py
 #### Question:- Given an integer array, return the next greater element for every element in the array. The next greater element for an element x is the first element greater than x that we come across while traversing the array in a clockwise manner. If it doesn't exist, return -1
 #### Input:- arr = [1, 3, 2, 4]   
 #### Output:- [3, 4, 4, -1]
@@ -627,6 +628,7 @@
 - space:- O(2n) - res + stack
 
 ## Next Greater Element in an array - 2
+#### Code File: NextGreaterElement_2.py
 #### Question:- same as above - difference is that we use a circular array
 #### Input:- arr = [3, 10, 4, 2, 1, 2, 6, 1, 7, 2, 9]   
 #### Output:- [10, -1, 6, 6, 2, 6, 7, 7, 9, 9, 10]
@@ -658,4 +660,259 @@
 - space:- O(2n) - res + stack
 
 ## Next Smaller Element
-#### Question:- 
+#### Code File: NextSmallerElement.py
+#### Question:- as the name suggest it is same as next greater element -1 but we have to find smaller instead of greater
+#### Input:- arr = [4, 8, 5, 2, 25]
+#### Output:- [2, 5, 2, -1, -1]
+#### Explanation:-
+- this is same as next greater element-1. array is not circular. for last element the res will be -1. Only change is instead of greater we get smaller
+
+- during pop will remove larger elements from array till we find the smaller element - otherwise everything is same! 
+#### Code:-
+    def fun(self, arr):
+        st=[]
+        res=[-1]*len(arr)
+        for i in range(len(arr)-1,-1,-1):
+            while st and st[-1] >= arr[i]:
+                st.pop()
+            if st:  res[i] = st[-1]
+            else: res[i] = -1
+            st.append(arr[i])
+        return res
+#### Complexity:-
+- same as next greater element
+
+## Trapping Rainwater
+#### Code File: TrappingRainwater.py
+#### Question:- Given an array of integers showing elevation of ground. find the water that can be trapped after rain.
+#### Input:- height = [0,1,0,2,1,0,1,3,2,1,2,1]
+#### Output:- 6
+#### Explanation:-
+- see striver video for good explanation - the core idea is that for an item the water it can retain after rain will be -> min(leftmax, rightmax) - arr[i] -> meaning, for an item the amount of water is difference between itself and the **minimal** between left-tower(max height item on leftside) and right-tower (max height item on rightside). why min - coz e.g we have 2,0,3 the water at 0 will be 2 not 3. it will overflow if the water at 0 will be 3.  
+
+-  so we do the above for each item and add each item's water retaintion into result. but time complexity will be O(n^2) and space - O(1)
+
+- so we optimize, we create prefix and suffix arrays which indicates what is the left-tower and right-tower at each item. (see video how that prefix and suffix array was derived) - its each basically we just record the max height at each item from lefthand side(iterate array from front) and righthand side(iterate array from back). This way we reduce computation of above formula for each item making time- O(n). but space:- O(n)
+
+- further optimization - where we calculate leftMax and rightMax (prefix and suffix at each item) on the fly. maintaining 2 variables.
+
+- in this approach - we have 2 pointers l and r and we do l++ when arr[l] <= arr[r], else r-- while l<=r (standard iteration of 2 pointers)
+
+- this -  **if arr[l] <= arr[r]** condition:- ensures that there exsist a tower on the right which is either equal to leftMax or greater. so we know that a deep exsists here and the value would be alteast **leftMax-arr[l]** - so we add it to res
+
+- Same in the other case, **else** condition:- which indicates that there exsist a tower on the left which is either equal to rightMax or greater. so we know that a deep exsists here and the value would be alteast **rightMax-arr[r]** - so we add it to res
+
+- we also update leftMax and rightMax on the fly as we iterate through both pointers.
+#### Code:-
+    def fun(self, arr):
+        res=0
+        l=0
+        r=len(arr)-1
+        leftMax=0
+        rightMax=0
+        while l<=r:
+            if arr[l]<=arr[r]:
+                if arr[l]>leftMax: leftMax=arr[l]
+                else: res=res+leftMax-arr[l]
+                l=l+1
+            else:
+                if arr[r]>rightMax: rightMax=arr[r]
+                else: res=res+rightMax-arr[r]
+                r=r-1
+        return res
+#### Complexity:-
+- time:- O(n)
+- space:- O(1)
+
+## Sum of Subarray Minimums
+#### Code File: SumOfSubarrayMinimums.py
+#### Question:-  calculate the sum of the minimum value in each (contiguous) subarray of arr
+#### Input:- arr = [3, 1, 2, 5]
+#### Output:- 18
+#### Explanation:-
+- So the intuition is that, consider element (3) in the arr [1,4,6,7,3,7,8,1]. the number of subsets it can form in right side is - [3], [3,7], [3,7,8] - for them the smallest number is **3**. for [3,7,8,1] it is 1. 
+
+- similarly for left side, it is - [3], [7,3], [6,7,3], [4,6,7,3], the smallest number is **4**. and for [4,6,7,3,1] it is 1.
+
+- so total number of subsets that we can form for 3 where 3 contributes as min element is **3x4**. So total = 3x4 x 3
+
+- so to get the number of subsets on right and left where that particular element is the smallest - we use the concept of next_smaller_element and previous_smaller_element. 
+
+- we get the difference in the indexes of next_smaller_element and the current number (3) -> those many subsets will be formed, on right-hand-side where that no. (3) is the smallest.
+
+- similarly we do with previous_smaller_element and get no. of subsets of left-hand-side of (3) where 3 is the min element.
+
+- we multiple both sides with the min element (3) to get the contribution of that element (3) towardsthe total.
+
+- we do this with all the elements in the array. and return module of total
+
+- some key points:- while calculating the next_smaller_element -> we consider its indexes and not the actual number (why? coz we need how many subsets can be formed between the given number and the next smallest number). Same for previous_smallest_number.
+
+- also, we do not add -1 if the next_smallest is not found - we add **n**. why? coz - if the next_smallest is not found meaning till the end of the array the current elenment(3) is the smallest. Similary for prevous_smallest we add **-1** indicating no element till the start of the array was smaller than the current element(3)
+
+- also there is an edge case that striver talked in his video. for arr[1, 1]. For this edge case we use **arr[st[-1]] > arr[i]** and not **arr[st[-1]] >= arr[i]** in any one of the definition (next_smaller or previous_smaller)
+
+- With this we can also solve **Sum of Subarray Maximum**
+#### Code:-
+    def next_smaller_element(self, arr):
+        st=[]
+        n = len(arr)
+        res=[0]*n
+        for i in range(n-1,-1,-1):
+            while st and arr[st[-1]] >= arr[i]:
+                st.pop()
+            if st: res[i] = st[-1] 
+            else: res[i] = n
+            st.append(i)
+        return res
+    
+    def previous_smaller_element(self, arr):
+        st=[]
+        n = len(arr)
+        res=[0]*n
+        for i in range(n):
+            while st and arr[st[-1]] > arr[i]:
+                st.pop()
+            if st: res[i] = st[-1] 
+            else: res[i] = -1
+            st.append(i)
+        return res
+    
+    def fun_opt(self, arr):
+        nse = self.next_smaller_element(arr)
+        pse = self.previous_smaller_element(arr)
+        total = 0
+        mod = int(1e9 + 7)
+        for i in range(len(arr)):
+            right = (nse[i] - i)
+            left = (i - pse[i])
+            val = (left * right * arr[i])
+            total = total + val
+        return total % mod
+#### Complexity:-
+- time:- O(2n) + O(2n) + O(n) = O(5n) = O(n) [O(2n) - for each function, O(n) - for main function] 
+- space:- O(4n) = O(n) - [2 arrays in 2 funtions, 2 atacks in 2 func]
+
+## Asteroid Collision
+#### Code File: AsteroidCollision.py
+#### Question:- an array represents an asteroid in a row, determine the state of the asteroids after all collisions. the absolute value represents the size of the asteroid, and the sign represents its direction. All asteroids move at the same speed. When two asteroids meet, the smaller one will explode. If they are the same size, both will explode. Asteroids moving in the same direction will never meet.
+#### Input:- asteroids = [10, 5, -3, -8, 7, -6, -7, 12, -15, 20]
+#### Output:- [-15, 20]
+#### Explanation:-
+- In this problem, if we consider (-6) we can see that we check all the previous elements one by one in reverse order(7,-8,-3,5..) - so the datastructure that we can use is LIFO
+
+-  So in this problem we simply use a stack to store all +ve numbers. If we face a -ve then we look into stack and figure out if we want to pop() or push(). the result is in the stack
+
+- Iterate, if +ve push()
+
+- If -ve, then while stack has smaller +ve values -> keep on poping
+
+- If both values are same(absolute value) -> pop() the +ve value in stack
+
+- Else (indicating we have a -ve value with us, and stack has -ve value or stack is empty) -> push() the -ve value in stack
+#### Code:-
+    def fun(self, asteroids):
+        st=[]
+        for i in asteroids:
+            # push all positive in stack
+            if i>0:
+                st.append(i)
+            # for negatives - do the check with positives in stack
+            else:
+                while st and st[-1] > 0 and st[-1] < abs(i): # while +ve in stack and value is less -> pop()
+                    st.pop()
+                if st and st[-1] == abs(i): # if +ve and -ve values are same -> pop() +ves
+                    st.pop()
+                elif not st or st[-1] < 0: # push() only if - stack is empty, or, already a -ve in stack(same direction)
+                    st.append(i)
+        return st
+#### Complexity:-
+- time and space:- O(n) - one loop and one stack
+
+## Sum Of Range Of All Subarray
+#### Code File: SumOfRangeOfAllSubarray.py
+#### Question:- given an array - we have to find all subarrays and return the sum of all ranges of all the subarrays. the range -> max_value - min_value of the subarray
+#### Input:- asteroids = [4, -2, -3, 4, 1]
+#### Output:- 59
+#### Explanation:-
+- This is similar to sum of subarray mins. The intuition is that 
+
+- (sum of all **ranges** of all subarrays) => (sum of **maxs** of all subarrays) - (sum of all **mins** of all subarrays)
+
+-  sum of all **maxs** of all subarrays -> kinda previous problem -> Find all subarray minimums
+
+-  sum of all **mins** of all subarrays -> previous problem -> Find all subarray maximums
+
+#### Code:-
+    def nge(self, arr):
+        st=[]
+        n=len(arr)
+        res=[0]*n
+        for i in range(n-1, -1, -1):
+            while st and arr[st[-1]] <= arr[i]:
+                st.pop()
+            if st: res[i] = st[-1]
+            else: res[i] = n
+            st.append(i)
+        return res
+    def pge(self, arr):
+        st=[]
+        n=len(arr)
+        res=[0]*n
+        for i in range(n):
+            while st and arr[st[-1]] < arr[i]:
+                st.pop()
+            if st: res[i] = st[-1]
+            else: res[i] = -1
+            st.append(i)
+        return res
+    def nse(self, arr):
+        st=[]
+        n=len(arr)
+        res=[0]*n
+        for i in range(n-1, -1, -1):
+            while st and arr[st[-1]] >= arr[i]:
+                st.pop()
+            if st: res[i] = st[-1]
+            else: res[i] = n
+            st.append(i)
+        return res
+    def pse(self, arr):
+        st=[]
+        n=len(arr)
+        res=[0]*n
+        for i in range(n):
+            while st and arr[st[-1]] > arr[i]:
+                st.pop()
+            if st: res[i] = st[-1]
+            else: res[i] = -1
+            st.append(i)
+        return res
+    
+    def total_small(self, arr):
+        total=0
+        nse = self.nse(arr)
+        pse = self.pse(arr)
+        for i in range(len(arr)):
+            left = (i-pse[i]) 
+            right = (nse[i]-i)
+            val = left * right * arr[i] #no of subsets where i in smaller * arr[i]
+            total = total + val
+        return total
+    def total_large(self, arr):
+        total=0
+        nge = self.nge(arr)
+        pge = self.pge(arr)
+        for i in range(len(arr)):
+            left = (i-pge[i])
+            right = (nge[i]-i) 
+            val = left * right * arr[i]  #no of subsets where i in larger * arr[i]
+            total = total + val
+        return total
+
+    def fun(self, arr):
+        return self.total_large(arr) - self.total_small(arr)
+        
+#### Complexity:-
+- time:- O(10n) - double than the previous problem 
+- space:- O(8n) - double than the previous problem
