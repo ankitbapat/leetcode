@@ -916,3 +916,90 @@
 #### Complexity:-
 - time:- O(10n) - double than the previous problem 
 - space:- O(8n) - double than the previous problem
+
+
+## Area of largest rectangle in Histogram
+#### Code File: AreaOfLargestRectangleInHistogram.py
+#### Question:- Given an array of heights representing the histogram's bar height with width = 1, return the max area formed in the histogram. 
+#### Input:- arr = [2,1,5,6,2,3]
+#### Output:- 10
+#### Explanation:-
+- So this uses the same principle of nse and pse.
+
+- For finding the max area that each element covers - we find the next smallest and previous smallest element's indexes. This will get the width of the area.
+
+- width = (left-right-1) and height = arr[i]. So max_area = max(max_area, height*width)
+#### Code:-
+    def next_smaller_element(self, arr):
+        st=[]
+        n = len(arr)
+        res=[0]*n
+        for i in range(n-1,-1,-1):
+            while st and arr[st[-1]] >= arr[i]:
+                st.pop()
+            if st: res[i] = st[-1] 
+            else: res[i] = n
+            st.append(i)
+        return res
+    
+    def previous_smaller_element(self, arr):
+        st=[]
+        n = len(arr)
+        res=[0]*n
+        for i in range(n):
+            while st and arr[st[-1]] > arr[i]:
+                st.pop()
+            if st: res[i] = st[-1] 
+            else: res[i] = -1
+            st.append(i)
+        return res
+
+    def largestRectangleArea(self, arr: List[int]) -> int:
+        nse = self.next_smaller_element(arr)
+        pse = self.previous_smaller_element(arr)
+        max_area = 0
+        for i in range(len(arr)):
+            right = nse[i]
+            left = pse[i]
+            area = (right - left - 1) * arr[i]
+            max_area = max(max_area, area)
+        return max_area
+#### Complexity:-
+- time:- O(2n) + O(2n) + O(n) = O(5n) = O(n) [O(2n) - for each function, O(n) - for main function] 
+- space:- O(4n) = O(n) - [2 arrays in 2 funtions, 2 atacks in 2 func]
+
+
+## Maximal Rectangle
+#### Code File: MaximalRectangle.py
+#### Question:- Given a m x n binary matrix filled with 0's and 1's, find the largest rectangle containing only 1's and return its area. 
+#### Input:- matrix = [["1","0","1","0","0"], ["1","0","1","1","1"], ["1","1","1","1","1"], ["1","0","0","1","0"]]
+#### Output:- 6
+#### Explanation:-
+- So this uses the same principle of histogram. We can see that reach row of the matrix represents a histogram.
+
+- Row1 => [1, 0, 1, 0, 0]. Row2 => [2, 0, 2, 1, 1]. Row3 => [3, 1, 3, 2, 2]. Row => [4, 0, 0, 3, 0].
+
+- So what we do is, we iterate throguh each row of a matrix, then each column of that row, 
+
+- we maintain a height array and add 1 to it, if we find matrix[r][c] = 1, or reset it to 0 if we find 0.
+
+- we then pass this height array, for each row, to the **AreaOfLargestRectangleInHistogram** code, to get the max_area of that row.
+
+- we then find max among all of those - then return
+#### Code:-
+    def fun(self, matrix):
+        height=[0]*len(matrix[0])
+        final_max_area=0
+        for row in matrix:
+            for c in range(len(row)):
+                if row[c]=="1": height[c] = height[c]+1
+                else: height[c] = 0
+        
+            current_max_area = self.histogram(height)
+            final_max_area = max(final_max_area, current_max_area)
+        return final_max_area
+#### Complexity:-
+- time:- time:- O(n x m + n x N) - O(n x m) is O(row x col) -> to iterate through each element in matrix. Also O(N) for histogram max_area finder 
+- space:- O(n)
+
+
