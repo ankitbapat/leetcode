@@ -999,7 +999,41 @@
             final_max_area = max(final_max_area, current_max_area)
         return final_max_area
 #### Complexity:-
-- time:- time:- O(n x m + n x N) - O(n x m) is O(row x col) -> to iterate through each element in matrix. Also O(N) for histogram max_area finder 
+- time:-  O(n x m + n x N) - O(n x m) is O(row x col) -> to iterate through each element in matrix. Also O(N) for histogram max_area finder 
 - space:- O(n)
 
+# Implementation Problems
+## Sliding Window Maximum
+#### Code File: SlidingWindowMaximum.py
+#### Question:- return max element of each window of size k. As the window moves from left-to-right in the arr 
+#### Input:- arr = [4,0,-1,3,5,3,6,8], k = 3
+#### Output:- [4,3,5,5,6,8]
+#### Explanation:-
+- So see striver video for better explanation. But what we do here are 2 main things (filter from front & maintain order in queue):
+
+- In the queue - store all indices
+    - 1. Check & remove from the front, if the item is out-of-bound for the window (k).
+    - 2. Maintain the largest to smallest order from left to right in the queue. Left - q[0] and right - q[-1]. 
+    - 3. So remove all smaller elements from back, for a ith element
+
+-  add ith element to queue from back
+
+- add first item from front of the queue to res. coz that is the max for that window (remember we first check and filter out-of-bound elements from the front)
+#### Code:-
+    def fun(self, arr, k):
+        res = []
+        q = deque()
+        for i in range(len(arr)):
+            if q and q[0] <= i-k: 
+                q.popleft() 
+            while q and arr[q[-1]] < arr[i]:
+                q.pop()
+            q.append(i)
+            
+            if i>=k-1:
+                res.append(arr[q[0]])
+        return res
+#### Complexity:-
+- time:- O(n) - to traval entire array + O(n) - total number of items removed from queue for the entire array traversal 
+- space:- O(k) - max no. of elements in queue (as we remove the out-of-bound elements)
 
