@@ -1037,3 +1037,151 @@
 - time:- O(n) - to traval entire array + O(n) - total number of items removed from queue for the entire array traversal 
 - space:- O(k) - max no. of elements in queue (as we remove the out-of-bound elements)
 
+## StockSpanProblem
+#### Code File: StockSpanProblem.py
+#### Question:- Given an array arr of size n, where each element arr[i] represents the stock price on day i. Calculate the span of stock prices for each day. The span Sᵢ for a specific day i is defined as the maximum number of consecutive previous days (including the current day) for which the stock price was less than or equal to the price on day i.
+#### Input:- arr = [120, 100, 60, 80, 90, 110, 115] , n = 7
+#### Output:- [1, 1, 1, 2, 3, 5, 6]
+#### Explanation:-
+- The solution is pretty simple, we just need to find previous greater element for each item in the array.
+- The difference between the current index and the indexes of the previous greater element - is our output for that item. 
+#### Code:-
+    def pge(self, arr):
+        st=[]
+        n=len(arr)
+        res=[0]*n
+        for i in range(n):
+            while st and arr[st[-1]] <= arr[i]:
+                st.pop()
+            if st: res[i] = st[-1]
+            else: res[i] = -1
+            st.append(i)
+        return res
+    def fun(self, n, arr):
+        pge = self.pge(arr)
+        ans = [0] * n
+        for i in range(n):
+            ans[i] = i - pge[i]
+        return ans
+#### Complexity:-
+- time:- O(n) - to find pge + O(n) - to iterate through the main array
+- space:- O(n) - stack used for pge
+
+## CelebrityProblem
+#### Code File: CelebrityProblem.py
+#### Question:- A celebrity is a person who is known by everyone else at the party but does not know anyone in return. Given a square matrix M where M[i][j] is 1 if person i knows person j. 0 is not. Find the celebrity
+#### Input:- M = [ 
+    [0, 1, 1, 0], 
+    [0, 0, 0, 0], 
+    [1, 1, 0, 0], 
+    [0, 1, 1, 0] 
+]
+#### Output:- 1
+#### Explanation:-
+- We start with eleminating rows which cannot be celebrity. we assign two pointers top and bottom at top and bottom rows.
+- If top knows bottom - top cannot be celebrity. If bottom knows top - bottom cannot be celebrity. If both do not know each other- both cannot be celebrity
+- We do this inside a while loop :- while top < bottom. If top > bottom - we did not find celebrity and we return -1
+- Else - we found the celebrity which either top or bottom pointer points to. So we verity if that row is actually is a celebrity
+- For this we loop throguh it and check that it should know noone and everyone should know him. If yes then return top/bottom else return -1 
+#### Code:-
+    def fun(self, M):
+        n=len(M)
+        top=0
+        bottom=n-1
+        while top<bottom:
+            if M[top][bottom]==1: top=top+1 #top knows bottom so top cannot be celebrity
+            elif M[bottom][top]==1: bottom=bottom-1  #bottom knows top so bottom cannot be celebrity
+            else: #  both do not know each other, so both cannot be the celebrity
+                top=top+1
+                bottom=bottom-1
+        if top>bottom: return -1 #bottom crossed top meaning there is no celebrity
+        #will use row pointed by top
+        for i in range(n):
+            if i==top: continue
+            # if top knows anyone or anyone does not knows top, return -1. meaning this row is not a celebrity
+            if M[top][i]==1 or M[i][top]==0:
+                return -1
+        return top
+#### Complexity:-
+- time:- O(N) - since eliminating persons and checking if the last candidate is a celebrity both take O(N) time.
+- space:- O(1)
+
+## LRU
+#### Code File: LRUCache.py
+#### Question:- Design LRU cache. get() returns a value and put() puts it. Both should be in O(1) time. If out of capacity remove the least recently used
+#### Input:- ["LRUCache", "put", "put", "get", "put", "get", "put", "get", "get", "get"]; [[2], [1, 1], [2, 2], [1], [3, 3], [2], [4, 4], [1], [3], [4]]
+#### Output:- [null, null, null, 1, null, -1, null, -1, 3, 4]
+#### Explanation:-
+- For this we use double linked list and a map. DLL so that we can keep track of most and least recently used, and remove the least recently used in O(1) time.
+- Use a map to store the -> key: key and value: NODE. -> note this we keep the node itself in the map. 
+- a node has key, value, next pointer and prev pointer.
+- initialize DLL which a head and a tail. nodes from head are most recently used. the one node at the end is the LRU.
+- when do put() - we update the map, remove if it exist in the DLL, and add node in the front of the DLL - so that this node becomes the most recently used. We also check if the size of map is greater than capacity, if it is then remove the last node, from tail, in the DLL (LRU node)
+- when get() - we fetch it from map, remove from the DLL and add it to the front - so that this node becomes the most recently used
+#### Code:-
+    class Node:
+        def __init__(self, key, val):
+            self.next=None
+            self.prev=None
+            self.key = key
+            self.val = val
+
+    class LRU:
+        def __init__(self, c):
+            self.capacity = c
+            self.head = Node(0,0)
+            self.tail = Node(0,0)
+            self.head.next = self.tail
+            self.tail.prev = self.head
+            self.dict = {}
+
+        def removeNode(self, node):
+            p = node.prev
+            n = node.next
+            p.next = n
+            n.prev = p
+
+        def addNode(self, node):
+            temp = self.head.next 
+            node.next = temp
+            node.prev = self.head
+            self.head.next = node
+            temp.prev = node
+
+        def put(self, key, value):
+            if key in self.dict:
+                self.removeNode(self.dict[key])
+
+            node = Node(key, value)
+            self.dict[key] = node
+            self.addNode(node)
+
+            if len(self.dict) > self.capacity:
+                n = self.tail.prev
+                self.removeNode(n)
+                del self.dict[n.key]
+            
+        def get(self, key):
+            if key in self.dict:
+                node = self.dict[key]
+                self.removeNode(node)
+                self.addNode(node)
+                return node.val
+            return -1
+#### Complexity:-
+- time:- O(1) - for both put and get
+- space:- O(N) - for DLL and a map
+
+## LFU
+#### Code File: LFUCache.py
+#### Question:- Same as LRU. But, If out of capacity remove the least frequently used. If tie then remove the least recently used
+#### Input:- same code
+#### Output:- see code
+#### Explanation:-
+- The logic is complex, see striver video
+#### Code:-
+    - it is complex - see code
+#### Complexity:-
+- time:- O(1) - for both put and get
+- space:- O(N) - for DLL and a 2 maps
+
